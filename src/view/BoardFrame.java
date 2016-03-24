@@ -9,7 +9,7 @@ public class BoardFrame extends JFrame  {
     public BoardFrame(String title){
         super();
         configure();
-
+        setTitle(title);
     }
 
     private void configure(){
