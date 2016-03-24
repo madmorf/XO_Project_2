@@ -9,10 +9,12 @@ public class BoardFrame extends JFrame  {
     public BoardFrame(String title){
         super();
         configure();
+
     }
 
     private void configure(){
         setResizable(false);
+        setSize(400,400);
         putFrameInTheCenterOfTheScreen();
     }
 
