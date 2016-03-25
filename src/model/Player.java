@@ -6,7 +6,7 @@ public class Player {
     private Figure figure;
 
     public Player(String name, Figure figure) {
-        Name = name;
+        this.Name = name;
         this.figure = figure;
     }
 
@@ -16,5 +16,10 @@ public class Player {
 
     public Figure getFigure() {
         return figure;
+    }
+
+    @Override
+    public String toString() {
+        return Name;
     }
 }
