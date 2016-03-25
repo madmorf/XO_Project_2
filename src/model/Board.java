@@ -20,11 +20,5 @@ public class Board {
         return FIELD_WIDTH;
     }
 
-    public void showGameField(){
-        for (int i = 0; i < GameField.length; i++){
-            for (int j = 0; j < GameField[0].length; j++){
-                System.out.println(GameField[i][j]);
-            }
-        }
-    }
+
 }
