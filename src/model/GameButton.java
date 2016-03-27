@@ -7,10 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Button extends JButton {
+public class GameButton extends JButton {
     private Point coordinatePoint;
 
-    public Button(Point coordinatePoint, GameKernell gameGameKernell) {
+    public GameButton(Point coordinatePoint, GameKernell gameGameKernell) {
         this.coordinatePoint = coordinatePoint;
         setIcon(new ImageIcon("/home/alex/dev/ide/IntellijIdea/XO_Project/resources/empty.png"));
         setText(coordinatePoint.toString());

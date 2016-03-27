@@ -1,6 +1,6 @@
 package model;
 
-public class Board {
+public class GameBoard {
 
     final static int FIELD_WIDTH = 3;
 

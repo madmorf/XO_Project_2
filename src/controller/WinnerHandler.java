@@ -1,19 +1,26 @@
 package controller;
 
-
 import model.Figure;
+import model.Player;
 
 import javax.swing.*;
 import java.util.Arrays;
 
-public class CheckWinnerHandler {
+public class WinnerHandler {
+
     private Figure[][] GameField;
+
+    private Player CurrentPlayer;
+
     private boolean[] HorizontalNullCounter = new boolean[3];
+
     private boolean[] VerticalNullCounter = new boolean[3];
+
     private boolean DiagonalRightNull;
+
     private boolean DiagonalLeftNull;
 
-    public CheckWinnerHandler(Figure[][] gameField) {
+    public WinnerHandler(Figure[][] gameField) {
         this.GameField = gameField;
     }
 
@@ -30,7 +37,7 @@ public class CheckWinnerHandler {
         System.out.println();
         System.out.println("horizontal " + Arrays.toString(HorizontalNullCounter));
         System.out.println("vertical" + Arrays.toString(VerticalNullCounter));
-        find();
+        findWinner();
     }
 
     private void checkVerticalForNull() {
@@ -87,22 +94,26 @@ public class CheckWinnerHandler {
         }
     }
 
-    private void find() {
+    private void findWinner() {
         for (int i = 0; i < 3; i++)
             if (HorizontalNullCounter[i] == false) {
                 if (GameField[i][0].equals(GameField[i][1])) {
                     System.out.println("Winner = " + GameField[i][0]);
                     JFrame frame = new JFrame();
-                    JOptionPane.showMessageDialog(frame, "Победил " + GameField[i][0]);
+                    JOptionPane.showMessageDialog(frame, "Победил " + GameField[i][0] + " " + CurrentPlayer.getName());
                     break;
                 }
             } else if (VerticalNullCounter[i] == false) {
                 if (GameField[0][i].equals(GameField[1][i]) && GameField[0][i].equals(GameField[2][i])) {
                     System.out.println("Winner = " + GameField[0][i]);
                     JFrame frame = new JFrame();
-                    JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][i]);
+                    JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][i] + " " + CurrentPlayer.getName());
                     break;
                 }
             }
+        }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        CurrentPlayer = currentPlayer;
     }
 }

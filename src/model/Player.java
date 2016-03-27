@@ -18,8 +18,4 @@ public class Player {
         return figure;
     }
 
-    @Override
-    public String toString() {
-        return Name;
-    }
 }

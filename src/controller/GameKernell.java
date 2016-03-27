@@ -1,52 +1,45 @@
 package controller;
 
-import model.Board;
+import model.GameBoard;
 import model.Figure;
 import model.Player;
 import java.awt.*;
 
 public class GameKernell {
-    private Board gameBoard = new Board();
+
+    private GameBoard gameBoard = new GameBoard();
+
     private Figure[][] GameField = gameBoard.getGameField();
-    private CheckWinnerHandler WinnerHandler = new CheckWinnerHandler(GameField);
-    private Player playerX = new Player("Sasha", Figure.X);
-    private Player playerO = new Player("Anna", Figure.O);
-    private Player DefaultPlayer = playerX;
-    private Player nextPlayer = DefaultPlayer;
+
+    private Player PlayerX = new Player("Sasha", Figure.X);
+
+    private Player PlayerO = new Player("Anna", Figure.O);
+
+    private final Player DEFAULT_PLAYER = PlayerX;
+
+    private Player NextPlayer = DEFAULT_PLAYER;
+
+    private WinnerHandler winnerHandler = new WinnerHandler(GameField);
 
     public void setFigureToTheField(Point coordinate, Player player) {
-        if (player.equals(playerO)) {
+        if (player.equals(PlayerO)) {
             if (GameField[(int) coordinate.getX()][(int) coordinate.getY()] == null) {
                 GameField[(int) coordinate.getX()][(int) coordinate.getY()] = player.getFigure();
-                checkWinner();
-                nextPlayer = playerX;
+                winnerHandler.setCurrentPlayer(PlayerO);
+                winnerHandler.checkWinner();
+                NextPlayer = PlayerX;
             }
-        } else if (player.equals(playerX)) {
+        } else if (player.equals(PlayerX)) {
             if (GameField[(int) coordinate.getX()][(int) coordinate.getY()] == null) {
                 GameField[(int) coordinate.getX()][(int) coordinate.getY()] = player.getFigure();
-                checkWinner();
-                nextPlayer = playerO;
-            }
-        }
-    }
-
-    public void showGameField() {
-        for (int i = 0; i < GameField.length; i++) {
-            System.out.println("");
-            System.out.println();
-            for (int j = 0; j < GameField[0].length; j++) {
-                System.out.print(GameField[i][j] + "|");
+                winnerHandler.setCurrentPlayer(PlayerX);
+                winnerHandler.checkWinner();
+                NextPlayer = PlayerO;
             }
         }
     }
 
     public Player getNextPlayer() {
-        return nextPlayer;
+        return NextPlayer;
     }
-
-    public void checkWinner() {
-        WinnerHandler.checkWinner();
-//    showGameField();
-    }
-
 }
