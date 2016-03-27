@@ -103,7 +103,9 @@ public class WinnerHandler {
                     JOptionPane.showMessageDialog(frame, "Победил " + GameField[i][0] + " " + CurrentPlayer.getName());
                     break;
                 }
-            } else if (VerticalNullCounter[i] == false) {
+            }
+        for (int i = 0; i < 3; i++) {
+            if (VerticalNullCounter[i] == false) {
                 if (GameField[0][i].equals(GameField[1][i]) && GameField[1][i].equals(GameField[2][i])) {
                     System.out.println("Winner = " + GameField[0][i]);
                     JFrame frame = new JFrame();
@@ -111,6 +113,7 @@ public class WinnerHandler {
                     break;
                 }
             }
+        }
     }
 
     public void setCurrentPlayer(Player currentPlayer) {
