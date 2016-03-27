@@ -97,21 +97,21 @@ public class WinnerHandler {
     private void findWinner() {
         for (int i = 0; i < 3; i++)
             if (HorizontalNullCounter[i] == false) {
-                if (GameField[i][0].equals(GameField[i][1])) {
+                if (GameField[i][0].equals(GameField[i][1]) && GameField[i][1].equals(GameField[i][2])) {
                     System.out.println("Winner = " + GameField[i][0]);
                     JFrame frame = new JFrame();
                     JOptionPane.showMessageDialog(frame, "Победил " + GameField[i][0] + " " + CurrentPlayer.getName());
                     break;
                 }
             } else if (VerticalNullCounter[i] == false) {
-                if (GameField[0][i].equals(GameField[1][i]) && GameField[0][i].equals(GameField[2][i])) {
+                if (GameField[0][i].equals(GameField[1][i]) && GameField[1][i].equals(GameField[2][i])) {
                     System.out.println("Winner = " + GameField[0][i]);
                     JFrame frame = new JFrame();
                     JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][i] + " " + CurrentPlayer.getName());
                     break;
                 }
             }
-        }
+    }
 
     public void setCurrentPlayer(Player currentPlayer) {
         CurrentPlayer = currentPlayer;
