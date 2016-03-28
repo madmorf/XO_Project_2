@@ -1,7 +1,7 @@
 package model;
 
-
-import controller.GameKernell;
+import controller.PlayersHandler;
+import controller.SetFigureHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,12 +11,17 @@ import java.awt.event.ActionListener;
 public class GameButton extends JButton {
 
     private Point coordinatePoint;
+    private SetFigureHandler setFigureHandler;
+    private PlayersHandler playersHandler;
+    private Figure[][] GameField;
+    private IconImages images = new IconImages();
 
-    private GameKernell gameKernell;
-
-    public GameButton(Point coordinatePoint, GameKernell kernell) {
+    public GameButton(Point coordinatePoint, SetFigureHandler setFigureHandler,
+                      PlayersHandler playersHandler, GameBoard gameBoard) {
+        this.GameField = gameBoard.getGameField();
         this.coordinatePoint = coordinatePoint;
-        this.gameKernell = kernell;
+        this.setFigureHandler = setFigureHandler;
+        this.playersHandler = playersHandler;
         configureButton();
         addListener();
     }
@@ -26,31 +31,24 @@ public class GameButton extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changeIcon();
-                gameKernell.setFigureToTheField(getCoordinatePoint(), gameKernell.getNextPlayer());
+                setFigureHandler.setFigureToTheField(getCoordinatePoint(), playersHandler.getNextPlayer());
             }
         });
     }
 
     private void configureButton() {
         setBorder(BorderFactory.createLoweredSoftBevelBorder());
-        try {
-            setIcon(new ImageIcon(getClass().getResource("Resources/Empty.png")));
-        } catch (Exception e) {
-        }
+        setIcon(new ImageIcon(images.getEmpty()));
     }
 
     private void changeIcon() {
-        if (gameKernell.getNextPlayer() == gameKernell.getPlayerX()) {
-            try {
-                setIcon(new ImageIcon(getClass().getResource("Resources/X.png")));
-                setHorizontalTextPosition(AbstractButton.CENTER);
-            } catch (Exception e) {
-            }
-        } else {
-            try {
-                setIcon(new ImageIcon(getClass().getResource("Resources/O.png")));
-                setHorizontalTextPosition(AbstractButton.CENTER);
-            } catch (Exception e) {
+        if (GameField[(int) coordinatePoint.getX()][(int) coordinatePoint.getY()] == null){
+            if (playersHandler.getNextPlayer() == playersHandler.getPlayerX()) {
+                    setIcon(new ImageIcon(images.getX()));
+                    setHorizontalTextPosition(AbstractButton.CENTER);
+            } else {
+                    setIcon(new ImageIcon(images.getO()));
+                    setHorizontalTextPosition(AbstractButton.CENTER);
             }
         }
 

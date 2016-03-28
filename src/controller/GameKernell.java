@@ -1,45 +1,36 @@
 package controller;
 
 import model.GameBoard;
-import model.Figure;
-import model.Player;
-import java.awt.*;
+import view.MainFrame;
 
 public class GameKernell {
 
-    private GameBoard gameBoard = new GameBoard();
+    private GameBoard gameBoard;
 
-    private Figure[][] GameField = gameBoard.getGameField();
+    private WinnerHandler winnerHandler;
 
-    private Player PlayerX = new Player("Sasha", Figure.X);
+    private PlayersHandler playersHandler;
 
-    private Player PlayerO = new Player("Anna", Figure.O);
+    private SetFigureHandler setFigureHandler;
 
-    private final Player DEFAULT_PLAYER = PlayerX;
+    private MainFrame GameWiev;
 
-    private Player NextPlayer = DEFAULT_PLAYER;
 
-    private WinnerHandler winnerHandler = new WinnerHandler(GameField);
+    public void CreateGame(){
 
-    public void setFigureToTheField(Point coordinate, Player player) {
-        if (player.equals(PlayerO)) {
-            if (GameField[(int) coordinate.getX()][(int) coordinate.getY()] == null) {
-                GameField[(int) coordinate.getX()][(int) coordinate.getY()] = player.getFigure();
-                winnerHandler.setCurrentPlayer(PlayerO);
-                winnerHandler.checkWinner();
-                NextPlayer = PlayerX;
-            }
-        } else if (player.equals(PlayerX)) {
-            if (GameField[(int) coordinate.getX()][(int) coordinate.getY()] == null) {
-                GameField[(int) coordinate.getX()][(int) coordinate.getY()] = player.getFigure();
-                winnerHandler.setCurrentPlayer(PlayerX);
-                winnerHandler.checkWinner();
-                NextPlayer = PlayerO;
-            }
-        }
+        gameBoard = new GameBoard();
+
+        playersHandler = new PlayersHandler();
+
+        winnerHandler = new WinnerHandler(gameBoard);
+
+        setFigureHandler = new SetFigureHandler(gameBoard, winnerHandler, playersHandler);
+
+        GameWiev = new MainFrame("XO GAME", setFigureHandler, playersHandler, gameBoard);
+
+        winnerHandler.setMainFrame(GameWiev);
+
     }
 
-    public Player getNextPlayer() {
-        return NextPlayer;
-    }
+
 }

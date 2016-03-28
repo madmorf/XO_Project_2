@@ -1,12 +1,15 @@
 package controller;
 
 import model.Figure;
+import model.GameBoard;
 import model.Player;
+import view.MainFrame;
 
 import javax.swing.*;
-import java.util.Arrays;
 
 public class WinnerHandler {
+
+    private GameBoard gameBoard;
 
     private Figure[][] GameField;
 
@@ -20,8 +23,11 @@ public class WinnerHandler {
 
     private boolean DiagonalLeftNull;
 
-    public WinnerHandler(Figure[][] gameField) {
-        this.GameField = gameField;
+    private MainFrame MainFrame;
+
+    public WinnerHandler(GameBoard gameBoard) {
+        this.gameBoard = gameBoard;
+        this.GameField = gameBoard.getGameField();
     }
 
     public void checkWinner() {
@@ -113,6 +119,7 @@ public class WinnerHandler {
             if (GameField[0][2].equals(GameField[1][1]) && GameField[1][1].equals(GameField[2][0])){
                 JFrame frame = new JFrame();
                 JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][2] + " " + CurrentPlayer.getName());
+                gameBoard.resetField();
             }
         }
 
@@ -121,6 +128,7 @@ public class WinnerHandler {
             if (GameField[0][0].equals(GameField[1][1]) && GameField[1][1].equals(GameField[2][2])){
                 JFrame frame = new JFrame();
                 JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][0] + " " + CurrentPlayer.getName());
+                gameBoard.resetField();
             }
         }
 
@@ -129,6 +137,7 @@ public class WinnerHandler {
                 if (GameField[i][0].equals(GameField[i][1]) && GameField[i][1].equals(GameField[i][2])) {
                     JFrame frame = new JFrame();
                     JOptionPane.showMessageDialog(frame, "Победил " + GameField[i][0] + " " + CurrentPlayer.getName());
+                    gameBoard.resetField();
                     break;
                 }
             }
@@ -138,10 +147,15 @@ public class WinnerHandler {
                 if (GameField[0][i].equals(GameField[1][i]) && GameField[1][i].equals(GameField[2][i])) {
                     JFrame frame = new JFrame();
                     JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][i] + " " + CurrentPlayer.getName());
+                    gameBoard.resetField();
                     break;
                 }
             }
         }
+    }
+
+    public void setMainFrame(view.MainFrame mainFrame) {
+        MainFrame = mainFrame;
     }
 
     public void setCurrentPlayer(Player currentPlayer) {

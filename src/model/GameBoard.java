@@ -20,5 +20,11 @@ public class GameBoard {
         return FIELD_WIDTH;
     }
 
-
+    public void resetField(){
+        for (int i = 0; i < GameField.length; i++){
+            for (int j = 0; j < GameField[0].length; j++){
+                GameField[i][j] = null;
+            }
+        }
+    }
 }
