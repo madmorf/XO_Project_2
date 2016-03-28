@@ -25,20 +25,10 @@ public class WinnerHandler {
     }
 
     public void checkWinner() {
-//        for (int i = 0; i < GameField.length; i++) {
-//            System.out.println("");
-//            System.out.println();
-//            for (int j = 0; j < GameField[0].length; j++) {
-//                System.out.print(GameField[i][j] + "|");
-//            }
-//        }
         checkDiagonalRightNull();
         checkDiagonalLeftNull();
         checkVerticalForNull();
         checkHorizontalForNull();
-//        System.out.println();
-//        System.out.println("horizontal " + Arrays.toString(HorizontalNullCounter));
-//        System.out.println("vertical" + Arrays.toString(VerticalNullCounter));
         findWinner();
     }
 
@@ -121,7 +111,6 @@ public class WinnerHandler {
     private void findWinner() {
         if (DiagonalRightNull == false){
             if (GameField[0][2].equals(GameField[1][1]) && GameField[1][1].equals(GameField[2][0])){
-//                System.out.println("Winner = " + GameField[0][0]);
                 JFrame frame = new JFrame();
                 JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][2] + " " + CurrentPlayer.getName());
             }
@@ -130,7 +119,6 @@ public class WinnerHandler {
 
         if (DiagonalLeftNull == false){
             if (GameField[0][0].equals(GameField[1][1]) && GameField[1][1].equals(GameField[2][2])){
-//                System.out.println("Winner = " + GameField[0][0]);
                 JFrame frame = new JFrame();
                 JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][0] + " " + CurrentPlayer.getName());
             }
@@ -139,7 +127,6 @@ public class WinnerHandler {
         for (int i = 0; i < 3; i++)
             if (HorizontalNullCounter[i] == false) {
                 if (GameField[i][0].equals(GameField[i][1]) && GameField[i][1].equals(GameField[i][2])) {
-//                    System.out.println("Winner = " + GameField[i][0]);
                     JFrame frame = new JFrame();
                     JOptionPane.showMessageDialog(frame, "Победил " + GameField[i][0] + " " + CurrentPlayer.getName());
                     break;
@@ -149,7 +136,6 @@ public class WinnerHandler {
         for (int i = 0; i < 3; i++) {
             if (VerticalNullCounter[i] == false) {
                 if (GameField[0][i].equals(GameField[1][i]) && GameField[1][i].equals(GameField[2][i])) {
-//                    System.out.println("Winner = " + GameField[0][i]);
                     JFrame frame = new JFrame();
                     JOptionPane.showMessageDialog(frame, "Победил " + GameField[0][i] + " " + CurrentPlayer.getName());
                     break;
