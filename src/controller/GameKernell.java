@@ -22,7 +22,7 @@ public class GameKernell {
 
         playersHandler = new PlayersHandler();
 
-        winnerHandler = new WinnerHandler(gameBoard);
+        winnerHandler = new WinnerHandler(gameBoard, playersHandler);
 
         setFigureHandler = new SetFigureHandler(gameBoard, winnerHandler, playersHandler);
 
