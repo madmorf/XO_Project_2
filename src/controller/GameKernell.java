@@ -5,30 +5,20 @@ import view.MainFrame;
 
 public class GameKernell {
 
-    private GameBoard gameBoard;
-
-    private WinnerHandler winnerHandler;
-
-    private PlayersHandler playersHandler;
-
-    private SetFigureHandler setFigureHandler;
-
-    private MainFrame GameWiev;
-
 
     public void CreateGame(){
 
-        gameBoard = new GameBoard();
+        GameBoard gameBoard = new GameBoard();
 
-        playersHandler = new PlayersHandler();
+        PlayersHandler playersHandler = new PlayersHandler();
 
-        winnerHandler = new WinnerHandler(gameBoard, playersHandler);
+        WinnerHandler winnerHandler = new WinnerHandler(gameBoard, playersHandler);
 
-        setFigureHandler = new SetFigureHandler(gameBoard, winnerHandler, playersHandler);
+        SetFigureHandler setFigureHandler = new SetFigureHandler(gameBoard, winnerHandler, playersHandler);
 
-        GameWiev = new MainFrame("XO GAME", setFigureHandler, playersHandler, gameBoard);
+        MainFrame gameWiev = new MainFrame("XO GAME", setFigureHandler, playersHandler, gameBoard);
 
-        winnerHandler.setMainFrame(GameWiev);
+        winnerHandler.setMainFrame(gameWiev);
 
     }
 
