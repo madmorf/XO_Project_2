@@ -25,7 +25,7 @@ public class WinnerHandler {
 
     private MainFrame MainFrame;
 
-    public WinnerHandler(GameBoard gameBoard) {
+    public WinnerHandler(GameBoard gameBoard, PlayersHandler playersHandler) {
         this.gameBoard = gameBoard;
         this.GameField = gameBoard.getGameField();
     }
